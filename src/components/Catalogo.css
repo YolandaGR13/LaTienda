@@ -1,0 +1,149 @@
+.catalogo {
+  display: grid;
+  grid-template-columns: repeat(3, 4fr); /* Por defecto: 3 columnas */
+  gap: 1.5rem;
+  padding: 2rem;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+
+
+.producto {
+  background-color: #1f1f1f;
+  border-radius: 10px;
+  padding: 1rem;
+  text-align: center;
+  transition: transform 0.3s ease;
+  color: white;
+}
+
+.producto img {
+  width: 100%;
+  height: auto;
+  aspect-ratio: 1 / 1;
+  object-fit: contain;
+  object-position: center;
+  background-color: #1a1a1a;
+  border-radius: 10px;
+  transition: transform 0.3s ease;
+  image-rendering: auto;
+}
+
+
+.producto img:hover {
+  transform: scale(1.05);
+}
+
+.menu-categorias {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  margin-top: 2rem;
+}
+
+.menu-categorias button {
+  background-color: #333;
+  color: white;
+  border: none;
+  padding: 0.5rem 1.2rem;
+  font-size: 1rem;
+  cursor: pointer;
+  border-radius: 6px;
+  transition: background-color 0.3s ease;
+}
+
+.menu-categorias button.activo {
+  background-color: #5c2c83;
+}
+
+.menu-categorias button:hover {
+  background-color: #444;
+}
+.precio {
+  font-weight: bold;
+  color: #ffd700; /* dorado mágico */
+  margin: 0.5rem 0;
+}
+
+.imagen-con-hover {
+  position: relative;
+  overflow: hidden;
+  border-radius: 10px;
+}
+
+.precio-hover {
+  position: absolute;
+  bottom: 10px;
+  right: 10px;
+  background: rgba(0, 0, 0, 0.8);
+  padding: 0.3rem 0.6rem;
+  border-radius: 5px;
+  color: #ffd700;
+  font-weight: bold;
+  font-size: 0.9rem;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.producto:hover .precio-hover {
+  opacity: 1;
+}
+
+@media (max-width: 900px) {
+  .catalogo {
+    grid-template-columns: repeat(2, 1fr); /* 2 columnas en tablet */
+  }
+}
+
+/* Pantallas pequeñas (móviles) */
+@media (max-width: 600px) {
+  .catalogo {
+    grid-template-columns: repeat(1, 1fr); /* 1 columna en móvil */
+  }
+}
+.menu-temas {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+}
+
+.menu-temas button {
+  background-color: #222;
+  color: white;
+  border: none;
+  padding: 0.4rem 0.8rem;
+  font-size: 0.9rem;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.menu-temas button.activo {
+  background-color: #5c2c83;
+}
+.contacto-instagram {
+  text-align: center;
+  margin-top: 2rem;
+  font-size: 1.1rem;
+}
+
+.contacto-instagram a {
+  text-decoration: none;
+  color: #ffd700;
+  font-weight: bold;
+}
+.mensaje-artesanal {
+  text-align: center;
+  background-color: #2a2a2a;
+  color: #fff;
+  padding: 1rem;
+  margin: 1rem auto;
+  border-radius: 8px;
+  max-width: 800px;
+  font-size: 1rem;
+  line-height: 1.4;
+}
