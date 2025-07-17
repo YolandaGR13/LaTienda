@@ -1,149 +1,233 @@
-.catalogo {
-  display: grid;
-  grid-template-columns: repeat(3, 4fr); /* Por defecto: 3 columnas */
-  gap: 1.5rem;
-  padding: 2rem;
-  max-width: 1200px;
-  margin: 0 auto;
+/* ================================
+   App.css / Catalogo.css completo
+   ================================ */
+
+/* 1) Reset y scroll natural */
+html, body, #root {
+  min-height: 100%;
+  margin: 0;
+  padding: 0;
 }
 
+/* 2) Contenedor principal */
+.App {
+  position: relative;
+  background-color: #314e2e;
+  min-height: 100vh;
+  padding: 2rem 1rem;
+  box-sizing: border-box;
+  overflow: visible;
+}
 
+/* 3) Filigranas en las esquinas */
+.App::before,
+.App::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  width: 600px;
+  height: 600px;
+  pointer-events: none;
+  z-index: 1;
+}
+.App::before {
+  left: 0;
+  background: url('./img/filigranaIz.svg') no-repeat center/contain;
+}
+.App::after {
+  right: 0;
+  background: url('./img/filigranaDer.svg') no-repeat center/contain;
+}
 
-.producto {
-  background-color: #1f1f1f;
-  border-radius: 10px;
-  padding: 1rem;
+/* 4) Logo y título */
+.logo-principal {
+  width: 180px;
+  display: block;
+  margin: 0 auto 1rem;
+  position: relative;
+  z-index: 2;
+}
+.App h1 {
   text-align: center;
-  transition: transform 0.3s ease;
-  color: white;
+  color: #f0f0f0;
+  font-family: "Montserrat", sans-serif;
+  font-size: 2.4rem;
+  margin-bottom: 1.5rem;
+  text-shadow: 1px 1px 2px rgba(219, 217, 217, 0.8);
+  position: relative;
+  z-index: 2;
 }
 
-.producto img {
-  width: 100%;
-  height: auto;
-  aspect-ratio: 1 / 1;
-  object-fit: contain;
-  object-position: center;
-  background-color: #1a1a1a;
-  border-radius: 10px;
-  transition: transform 0.3s ease;
-  image-rendering: auto;
-}
-
-
-.producto img:hover {
-  transform: scale(1.05);
-}
-
+/* 5) Menú de categorías */
 .menu-categorias {
   display: flex;
   justify-content: center;
   gap: 1rem;
-  margin-top: 2rem;
-}
-
-.menu-categorias button {
-  background-color: #333;
-  color: white;
-  border: none;
-  padding: 0.5rem 1.2rem;
-  font-size: 1rem;
-  cursor: pointer;
-  border-radius: 6px;
-  transition: background-color 0.3s ease;
-}
-
-.menu-categorias button.activo {
-  background-color: #5c2c83;
-}
-
-.menu-categorias button:hover {
-  background-color: #444;
-}
-.precio {
-  font-weight: bold;
-  color: #ffd700; /* dorado mágico */
-  margin: 0.5rem 0;
-}
-
-.imagen-con-hover {
+  margin-bottom: 2rem;
   position: relative;
-  overflow: hidden;
-  border-radius: 10px;
+  z-index: 2;
+}
+.menu-categorias button {
+  background-color: #1a301a;
+  color: #a8d5a2;
+  border: 1px solid #2e5230;
+  padding: 1.7rem 1.2rem;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background-color 0.2s, transform 0.2s;
+}
+.menu-categorias button:hover {
+  background-color: #2e5230;
+  transform: scale(1.05);
+}
+.menu-categorias button.activo {
+  background-color: #3f7043;
+  color: #fff;
 }
 
-.precio-hover {
-  position: absolute;
-  bottom: 10px;
-  right: 10px;
-  background: rgba(0, 0, 0, 0.8);
-  padding: 0.3rem 0.6rem;
-  border-radius: 5px;
-  color: #ffd700;
+/* 6) Instagram */
+.contacto-instagram {
+  text-align: center;
+  margin-bottom: 2rem;
+  position: relative;
+  z-index: 2;
+}
+.contacto-instagram a {
+  text-decoration: none;
+  color: #2bff00;
   font-weight: bold;
-  font-size: 0.9rem;
-  opacity: 0;
-  transition: opacity 0.3s ease;
+  font-size: 1.1rem;
 }
 
-.producto:hover .precio-hover {
-  opacity: 1;
+/* 7) Mensajes */
+.mensaje-artesanal,
+.mensaje-atencion {
+  max-width: 800px;
+  margin: 4rem auto;
+  padding: 3rem 2rem;
+  background-color: #243d24;
+  border-left: 4px solid #21633c;
+  color: #c8f7c5;
+  font-style: italic;
+  line-height: 1.7;
+  position: relative;
+  z-index: 2;
+}
+.mensaje-atencion {
+  background: none;
+  border: none;
+  color: #e0e0e0;
+  font-style: normal;
 }
 
-@media (max-width: 900px) {
-  .catalogo {
-    grid-template-columns: repeat(2, 1fr); /* 2 columnas en tablet */
-  }
-}
-
-/* Pantallas pequeñas (móviles) */
-@media (max-width: 600px) {
-  .catalogo {
-    grid-template-columns: repeat(1, 1fr); /* 1 columna en móvil */
-  }
-}
+/* 8) Temas */
 .menu-temas {
   display: flex;
   justify-content: center;
   flex-wrap: wrap;
   gap: 0.6rem;
-  margin-top: 1rem;
-  margin-bottom: 1rem;
+  margin: 1rem 0 2rem;
+  position: relative;
+  z-index: 2;
 }
-
 .menu-temas button {
-  background-color: #222;
-  color: white;
-  border: none;
+  background-color: #1a301a;
+  color: #a8d5a2;
+  border: 1px solid #2e5230;
   padding: 0.4rem 0.8rem;
-  font-size: 0.9rem;
   border-radius: 5px;
   cursor: pointer;
-  transition: background-color 0.3s ease;
+  transition: background-color 0.2s, transform 0.2s;
 }
-
+.menu-temas button:hover {
+  background-color: #2e5230;
+  transform: scale(1.05);
+}
 .menu-temas button.activo {
-  background-color: #5c2c83;
-}
-.contacto-instagram {
-  text-align: center;
-  margin-top: 2rem;
-  font-size: 1.1rem;
+  background-color: #3f7043;
+  color: #fff;
 }
 
-.contacto-instagram a {
-  text-decoration: none;
-  color: #ffd700;
-  font-weight: bold;
+/* 9) Forzado de grid: 3 columnas desktop, 2 tablet, 1 móvil */
+.catalogo {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1.5rem;
+  margin: 0 auto;
+  padding-top: 1rem;
+  max-width: 900px;   /* ancho para 3 tarjetas ~280px + gaps */
+  position: relative;
+  z-index: 2;
 }
-.mensaje-artesanal {
-  text-align: center;
-  background-color: #2a2a2a;
-  color: #fff;
+@media (max-width: 900px) {
+  .catalogo {
+    grid-template-columns: repeat(2, 1fr);
+    max-width: 600px;
+  }
+}
+@media (max-width: 600px) {
+  .catalogo {
+    grid-template-columns: 1fr;
+    max-width: 400px;
+  }
+}
+.producto p {
+  color: #ffffff;       /* fuerza texto blanco */
+}
+/* 10) Tarjetas y contenedor de imagen cuadrado */
+.producto {
+  background-color: #183318;
+  border-radius: 10px;
   padding: 1rem;
-  margin: 1rem auto;
-  border-radius: 8px;
-  max-width: 800px;
-  font-size: 1rem;
-  line-height: 1.4;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.producto:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 20px rgba(12, 243, 43, 0.6);
+}
+
+/* 10a) Contenedor cuadrado para la imagen */
+.imagen-con-hover {
+  width: 100%;
+  max-width: 300px;     /* ancho máximo mayor */
+  aspect-ratio: 1 / 1;
+  overflow: hidden;
+  border-radius: 10px;
+  position: relative;
+  margin: 0 auto;  
+}
+/* 10b) Imágenes llenando el contenedor cuadrado */
+.imagen-con-hover img,
+.imagen-con-hover .CarruselImagenes img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  display: block;
+  transition: transform 0.3s ease;
+}
+.imagen-con-hover img:hover,
+.imagen-con-hover .CarruselImagenes img:hover {
+  transform: scale(2.05);
+}
+
+/* 11) Precio-hover */
+.precio-hover {
+  position: absolute;
+  bottom: 10px;
+  right: 10px;
+  background: rgba(188, 240, 188, 0.9);
+  color: #258b1c;
+  font-weight: bold;
+  font-size: 0.9rem;
+  padding: 0.3rem 0.6rem;
+  border-radius: 5px;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+.producto:hover .precio-hover {
+  opacity: 1;
 }

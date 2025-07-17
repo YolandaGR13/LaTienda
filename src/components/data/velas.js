@@ -1,10 +1,10 @@
 export const velas= [
   {
     categoria: "velas artesanales",
-    nombre: "Vela vela/velón personalizada",
+    nombre: "Cirio/vela/velón personalizada",
     imagen: [require("../img/velas2.png"),require("../img/prote3.png"),],
-    descripcion: "Se pueden elegir desde los colores, componentes hasta la medida vela(12cm) o velón(9cm).",
-    precio: "Vela: 2€ Velón: 5€",
+    descripcion: "Se pueden elegir desde los colores, componentes hasta la medida cirio(12cm), vela(9cm)o velón(16cm).",
+    precio: "Cirio: 2€ Vela: 5€ Velon:10€",
     Material: "Cera de abeja o soja",
     tema: ["abundancia", "amor", "protección", "ofrendas"],
   },
@@ -19,10 +19,10 @@ export const velas= [
   },
    {
     categoria: "velas artesanales",
-    nombre: "Velón deshacedor reventón",
+    nombre: "Vela deshacedor reventón",
     imagen: require("../img/volteo.png"),
-    descripcion: "Solo se pueden cambiar algunos elementos visuales.⚠️Con este veloniempre con vigilancia y en un sitio aireado⚠️",
-    precio: "Velón: 6€",
+    descripcion: "Solo se pueden cambiar algunos elementos visuales.⚠️Con este vela siempre con vigilancia y en un sitio aireado⚠️",
+    precio: "Vela: 6€",
     Material: "Soja",
     tema: ["protección"],
   },
@@ -59,9 +59,8 @@ export const velas= [
     {
     categoria: "velas artesanales",
     nombre: "Kit de velas mini",
-    imagen: [
+    imagen: 
       require("../img/miniVelasTodas.png"),
-    ],
     descripcion: "Para ofrendas, mini rituales o acompañamiento.",
     precio: "4€",
     Material: "Cera de abeja o soja",
@@ -79,9 +78,9 @@ export const velas= [
   {
     categoria: "velas artesanales",
     nombre: "Vela pareja personalizada",
-    imagen: [
+    imagen: 
       require("../img/pareja.png")
-    ],
+    ,
     descripcion: "Perfecta para amarres, parejas o rituales de familia y amor",
     precio: "6€",
     Material: "Cera de abeja",
@@ -99,7 +98,7 @@ export const velas= [
     {
     categoria:"velas artesanales",
     nombre: "Vela mujer personalizada",
-    imagen:[require("../img/mujer.png")],
+    imagen:[require("../img/mujer.png"), require("../img/mujer2.png")],
     descripcion: "Vela personalizada con la ritualización que necesites.",
     precio: "7€",
     Material: "Cera de abeja o soja",
@@ -135,7 +134,7 @@ export const velas= [
     {
     categoria: "velas artesanales",
     nombre:"Calavera personalizada",
-    imagen: require("../img/calavera.png"),
+    imagen:[require("../img/calavera.png")],
     descripcion: "Para ataques, protección, ofrendas o rituales de muerte.",
     precio: "8€",
     Material: "Cera de abeja o soja ",
