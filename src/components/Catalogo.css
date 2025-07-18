@@ -231,3 +231,47 @@ html, body, #root {
 .producto:hover .precio-hover {
   opacity: 1;
 }
+/* --------------------------------------------- */
+/*  Media queries para móvil:                    */
+/* --------------------------------------------- */
+
+@media (max-width: 768px) {
+  /* 1) Filigranas más pequeñas en móvil */
+  .App::before,
+  .App::after {
+    width: 150px;
+    height: 150px;
+  }
+
+  /* 2) Reducción de paddings en el contenedor */
+  .App {
+    padding: 1rem 0.5rem;
+  }
+
+  /* 3) Ajuste del menú de categorías: que envuelva */
+  .menu-categorias {
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-bottom: 1rem;
+  }
+  .menu-categorias button {
+    padding: 0.5rem 0.8rem;
+    font-size: 0.9rem;
+  }
+
+  /* 4) Ajuste del título y subtítulo */
+  .app-title {
+    font-size: 1.8rem;
+  }
+  .app-subtitle {
+    font-size: 1.2rem;
+    margin-bottom: 1rem;
+  }
+
+  /* 5) Ajuste del contenedor de productos */
+  .catalogo {
+    max-width: 100%;
+    padding: 0;
+    gap: 1rem;
+  }
+}

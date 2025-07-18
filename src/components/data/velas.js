@@ -10,7 +10,7 @@ export const velas= [
   },
    {
     categoria: "velas artesanales",
-    nombre: "Velon de protección para rituales",
+    nombre: "Vela de protección para rituales",
     imagen: require("../img/protePiedra.png"),
     descripcion: "Se pueden elegir en negro y las piedras también",
     precio: "5€",
@@ -134,7 +134,7 @@ export const velas= [
     {
     categoria: "velas artesanales",
     nombre:"Calavera personalizada",
-    imagen:[require("../img/calavera.png")],
+    imagen:[require("../img/calavera.png"), require("../img/calavera2.png")],
     descripcion: "Para ataques, protección, ofrendas o rituales de muerte.",
     precio: "8€",
     Material: "Cera de abeja o soja ",
