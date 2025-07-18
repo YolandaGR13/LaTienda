@@ -97,7 +97,7 @@ export const preparados= [
     descripcion: "Muñeco enlazado a alguien o servidor con la intencion que quieras",
     precio: "S:15€ G:35€",
     tema: ["kit","amor","proteccion","salud"],
-    Material: "Goma Eva.",
+    Material: "Goma Eva o crochet.",
   },
     {
     categoria: "preparados",
