@@ -122,8 +122,8 @@ const Catalogo = () => {
       {/* Catálogo de productos */}
       <div className="catalogo">
         {productos.length > 0 ? (
-          productos.map((item, index) => (
-            <div key={index} className="producto">
+          productos.map((item) => (
+            <div key={item.id || item.nombre} className="producto">
               <div className="imagen-con-hover">
                 {Array.isArray(item.imagen) ? (
                   <CarruselImagenes imagenes={item.imagen} />

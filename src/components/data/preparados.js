@@ -4,7 +4,16 @@ export const preparados= [
     nombre: "Agua de Florida artesanal de limpieza ",
     imagen: require("../img/botella2.png"),
     descripcion: "Se pueden elegir macerada o destilada",
-    precio: "Macerada: 3€ Destilada: 5€",
+    precio: "Macerada: 4€ Destilada: 6€",
+    tema: ["protección", "ofrendas"],
+    Material: "Agua destilada, hierbas y aceites esenciales"
+  },
+    {
+    categoria: "preparados",
+    nombre: "Destilado personalizable",
+    imagen: require("../img/botella2.png"),
+    descripcion: "¿Quieres un destilado unico? ¿Quizá uno para tu altar? ¿Ofrendar a una entidad?",
+    precio: "Destilada: 5€",
     tema: ["protección", "ofrendas"],
     Material: "Agua destilada, hierbas y aceites esenciales"
   },
@@ -85,8 +94,8 @@ export const preparados= [
     categoria: "preparados",
     nombre: "Muñeco o servidor ",
     imagen: require("../img/vudu.png"),
-    descripcion: "Muñexo enlazado a alguien o servidor con la intencion que quieras",
-    precio: "15€",
+    descripcion: "Muñeco enlazado a alguien o servidor con la intencion que quieras",
+    precio: "S:15€ G:35€",
     tema: ["kit","amor","proteccion","salud"],
     Material: "Goma Eva.",
   },
