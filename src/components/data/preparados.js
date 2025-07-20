@@ -4,7 +4,7 @@ export const preparados= [
     nombre: "Agua de Florida artesanal de limpieza ",
     imagen: require("../img/botella2.png"),
     descripcion: "Se pueden elegir macerada o destilada",
-    precio: "Macerada: 4€ Destilada: 6€",
+    precio: "Macerada: 5€ Destilada: 10€",
     tema: ["protección", "ofrendas"],
     Material: "Agua destilada, hierbas y aceites esenciales"
   },
@@ -13,7 +13,7 @@ export const preparados= [
     nombre: "Destilado personalizable",
     imagen: require("../img/botella2.png"),
     descripcion: "¿Quieres un destilado unico? ¿Quizá uno para tu altar? ¿Ofrendar a una entidad?",
-    precio: "Destilada: 5€",
+    precio: "Destilada: 10€",
     tema: ["protección", "ofrendas"],
     Material: "Agua destilada, hierbas y aceites esenciales"
   },
@@ -22,7 +22,7 @@ export const preparados= [
     nombre: "Hidrolato de conexión espiritual ",
     imagen: require("../img/botella1.png"),
     descripcion: "Destilación en alambique de cobre",
-    precio: "5€",
+    precio: "10€",
     tema: ["Espiritualidad"],
     Material: "Agua destilada, hierbas y aceites esenciales"
   },
@@ -31,7 +31,7 @@ export const preparados= [
     nombre: "Macerado de belleza artesanal",
     imagen: require("../img/botellaBelleza.png"),
     descripcion: "Magia glamuor para que te vean y sientas bella.",
-    precio: "3€",
+    precio: "5€",
     tema: ["amor"],
     Material: "Macerado de hierbas y aceites esenciales"
 
@@ -41,7 +41,7 @@ export const preparados= [
     nombre: "Hidrolato Amame",
     imagen: require("../img/botellaBelleza.png"),
     descripcion: "Todo el que se acerque a ti sentirá amor y ternura.",
-    precio: "5€",
+    precio: "7€",
     tema: ["amor"],
     Material: "Destilado de hierbas y aceites esenciales"
   },
@@ -50,7 +50,7 @@ export const preparados= [
     nombre: "Vino de paracelso",
     imagen: require("../img/vino.png"),
     descripcion: "Conecta con la 5º esencia",
-    precio: "5€",
+    precio: "8€",
     tema: ["Espiritualidad"],
     Material: "Macerado de hierbas y aceites esenciales"
   },
@@ -59,7 +59,7 @@ export const preparados= [
     nombre: "Aceite Ven a mi ",
     imagen: require("../img/aceiteVen.png"),
     descripcion: "⚠️Cuidado con este aceite por alta toxicidad ⚠️.",
-    precio: "6€",
+    precio: "7€",
     tema: ["amor"],
     Material: "Macerado de hierbas y semillas "
   },
