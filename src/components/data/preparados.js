@@ -3,8 +3,8 @@ export const preparados= [
     categoria: "preparados",
     nombre: "Agua de Florida artesanal de limpieza ",
     imagen: require("../img/botella2.png"),
-    descripcion: "Se pueden elegir macerada o destilada",
-    precio: "Macerada: 4€ Destilada: 6€",
+    descripcion: "Se pueden elegir macerada o destilada.Cant:100ml",
+    precio: "Macerada: 6€ Destilada: 7€",
     tema: ["protección", "ofrendas"],
     Material: "Agua destilada, hierbas y aceites esenciales"
   },
@@ -12,8 +12,8 @@ export const preparados= [
     categoria: "preparados",
     nombre: "Destilado personalizable",
     imagen: require("../img/botella2.png"),
-    descripcion: "¿Quieres un destilado unico? ¿Quizá uno para tu altar? ¿Ofrendar a una entidad?",
-    precio: "Destilada: 5€",
+    descripcion: "¿Quieres un destilado unico? ¿Quizá uno para tu altar? ¿Ofrendar a una entidad? Cant:100ml",
+    precio: "Destilada: 6€",
     tema: ["protección", "ofrendas"],
     Material: "Agua destilada, hierbas y aceites esenciales"
   },
@@ -21,8 +21,8 @@ export const preparados= [
     categoria: "preparados",
     nombre: "Hidrolato de conexión espiritual ",
     imagen: require("../img/botella1.png"),
-    descripcion: "Destilación en alambique de cobre",
-    precio: "5€",
+    descripcion: "Destilación en alambique de cobre. Cant:100ml",
+    precio: "6€",
     tema: ["Espiritualidad"],
     Material: "Agua destilada, hierbas y aceites esenciales"
   },
@@ -30,8 +30,8 @@ export const preparados= [
     categoria: "preparados",
     nombre: "Macerado de belleza artesanal",
     imagen: require("../img/botellaBelleza.png"),
-    descripcion: "Magia glamuor para que te vean y sientas bella.",
-    precio: "3€",
+    descripcion: "Magia glamuor para que te vean y sientas bella.Cant:100ml",
+    precio: "5€",
     tema: ["amor"],
     Material: "Macerado de hierbas y aceites esenciales"
 
@@ -40,8 +40,8 @@ export const preparados= [
     categoria: "preparados",
     nombre: "Hidrolato Amame",
     imagen: require("../img/botellaBelleza.png"),
-    descripcion: "Todo el que se acerque a ti sentirá amor y ternura.",
-    precio: "5€",
+    descripcion: "Todo el que se acerque a ti sentirá amor y ternura.Cant:100ml",
+    precio: "6€",
     tema: ["amor"],
     Material: "Destilado de hierbas y aceites esenciales"
   },
@@ -49,17 +49,71 @@ export const preparados= [
     categoria: "preparados",
     nombre: "Vino de paracelso",
     imagen: require("../img/vino.png"),
-    descripcion: "Conecta con la 5º esencia",
+    descripcion: "Conecta con la 5º esencia.Cant:50ml",
     precio: "5€",
     tema: ["Espiritualidad"],
     Material: "Macerado de hierbas y aceites esenciales"
+  },
+     {
+    categoria: "preparados",
+    nombre: "Aceite personalizable ",
+    imagen: require("../img/aceiteVen.png"),
+    descripcion: "Cuentame que necesitas y se hará realidad en forma de aciete. Cant:50ml",
+    precio: "6€",
+    tema: ["abundancia","amor","proteccion","salud"],
+    Material: "Macerado de hierbas y semillas "
+  },
+      {
+    categoria: "preparados",
+    nombre: "Aceite PombaGira",
+    imagen: require("../img/aceiteVen.png"),
+    descripcion: "Aceite para encantar, enamorar, belleza o como ofrenda a PombaGira. Cant:50ml",
+    precio: "6€",
+    tema: ["amor"],
+    Material: "Macerado de hierbas y semillas "
   },
       {
     categoria: "preparados",
     nombre: "Aceite Ven a mi ",
     imagen: require("../img/aceiteVen.png"),
-    descripcion: "⚠️Cuidado con este aceite por alta toxicidad ⚠️.",
-    precio: "6€",
+    descripcion: "⚠️Cuidado con este aceite por alta toxicidad⚠️(No topico). Cant:50ml",
+    precio: "8€",
+    tema: ["amor"],
+    Material: "Macerado de hierbas y semillas "
+  },
+  {
+    categoria: "preparados",
+    nombre: "Oleum Victoris ",
+    imagen: require("../img/aceiteVen.png"),
+    descripcion: "Aceite que con la fuerza del sol te lleva al éxito y la vicotria. Cant:50ml",
+    precio: "7€",
+    tema: ["abundancia"],
+    Material: "Macerado de hierbas y semillas "
+  },
+    {
+    categoria: "preparados",
+    nombre: "Aceite de balanza ",
+    imagen: require("../img/aceiteVen.png"),
+    descripcion: "Para cuando se pide justicia, equilibrio, resolución de conflictos, verdad revelada. Cant:50ml",
+    precio: "7€",
+    tema: ["abundancia"],
+    Material: "Macerado de hierbas y semillas "
+  },
+    {
+    categoria: "preparados",
+    nombre: "Aceite Abrecaminos",
+    imagen: require("../img/aceiteVen.png"),
+    descripcion: "Diseñado para eliminar bloqueos y atraer nuevas oportunidades(No apto para pieles sensibles). Cant:50ml",
+    precio: "7€",
+    tema: ["amor"],
+    Material: "Macerado de hierbas y semillas "
+  },
+      {
+    categoria: "preparados",
+    nombre: "Tumba y hace !PUM!",
+    imagen: require("../img/aceiteVen.png"),
+    descripcion: "Diseñado para eliminar brujerias o entidades(No topico). Cant:50ml",
+    precio: "7€",
     tema: ["amor"],
     Material: "Macerado de hierbas y semillas "
   },
