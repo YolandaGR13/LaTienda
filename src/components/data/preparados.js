@@ -57,7 +57,7 @@ export const preparados= [
      {
     categoria: "preparados",
     nombre: "Aceite personalizable ",
-    imagen: require("../img/aceiteVen.png"),
+    imagen: require("../img/AHierbas.png"),
     descripcion: "Cuentame que necesitas y se hará realidad en forma de aciete. Cant:50ml",
     precio: "6€",
     tema: ["abundancia","amor","proteccion","salud"],
@@ -65,8 +65,8 @@ export const preparados= [
   },
       {
     categoria: "preparados",
-    nombre: "Aceite PombaGira",
-    imagen: require("../img/aceiteVen.png"),
+    nombre: "💃Aceite PombaGira💃",
+    imagen: require("../img/pomba.png"),
     descripcion: "Aceite para encantar, enamorar, belleza o como ofrenda a PombaGira. Cant:50ml",
     precio: "6€",
     tema: ["amor"],
@@ -74,7 +74,7 @@ export const preparados= [
   },
       {
     categoria: "preparados",
-    nombre: "Aceite Ven a mi ",
+    nombre: "🌹🔥Aceite Ven a mi🌹🔥",
     imagen: require("../img/aceiteVen.png"),
     descripcion: "⚠️Cuidado con este aceite por alta toxicidad⚠️(No topico). Cant:50ml",
     precio: "8€",
@@ -92,8 +92,8 @@ export const preparados= [
   },
     {
     categoria: "preparados",
-    nombre: "Aceite de balanza ",
-    imagen: require("../img/aceiteVen.png"),
+    nombre: "⚖️Aceite de balanza⚖️",
+    imagen: require("../img/justicia.png"),
     descripcion: "Para cuando se pide justicia, equilibrio, resolución de conflictos, verdad revelada. Cant:50ml",
     precio: "7€",
     tema: ["abundancia"],
@@ -111,7 +111,7 @@ export const preparados= [
       {
     categoria: "preparados",
     nombre: "Tumba y hace !PUM!",
-    imagen: require("../img/aceiteVen.png"),
+    imagen: require("../img/justicia.png"),
     descripcion: "Diseñado para eliminar brujerias o entidades(No topico). Cant:50ml",
     precio: "7€",
     tema: ["amor"],
