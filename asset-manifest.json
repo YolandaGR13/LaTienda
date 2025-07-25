@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.css": "/LaTienda/static/css/main.55ac15d8.css",
-    "main.js": "/LaTienda/static/js/main.df80bb12.js",
+    "main.css": "/LaTienda/static/css/main.40b8d615.css",
+    "main.js": "/LaTienda/static/js/main.f77ddef5.js",
     "static/js/453.678b16ca.chunk.js": "/LaTienda/static/js/453.678b16ca.chunk.js",
     "static/media/vudu.png": "/LaTienda/static/media/vudu.531dc3e8ad9a247d44e5.png",
     "static/media/maraca.png": "/LaTienda/static/media/maraca.a0e07d79d67ec5a01490.png",
@@ -52,12 +52,12 @@
     "static/media/filigranaIz.svg": "/LaTienda/static/media/filigranaIz.fe100e1b0cb0c11d24df.svg",
     "static/media/filigranaDer.svg": "/LaTienda/static/media/filigranaDer.9a03cc3a51a9a5384284.svg",
     "index.html": "/LaTienda/index.html",
-    "main.55ac15d8.css.map": "/LaTienda/static/css/main.55ac15d8.css.map",
-    "main.df80bb12.js.map": "/LaTienda/static/js/main.df80bb12.js.map",
+    "main.40b8d615.css.map": "/LaTienda/static/css/main.40b8d615.css.map",
+    "main.f77ddef5.js.map": "/LaTienda/static/js/main.f77ddef5.js.map",
     "453.678b16ca.chunk.js.map": "/LaTienda/static/js/453.678b16ca.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.55ac15d8.css",
-    "static/js/main.df80bb12.js"
+    "static/css/main.40b8d615.css",
+    "static/js/main.f77ddef5.js"
   ]
 }
