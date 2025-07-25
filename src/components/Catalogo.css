@@ -1,59 +1,41 @@
 /* ================================
-   App.css / Catalogo.css completo
+   App.css / Catalogo.css actualizado con filigranas estáticas
    ================================ */
 
-/* 1) Reset y scroll natural */
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600;700&display=swap');
+
 html, body, #root {
   min-height: 100%;
   margin: 0;
   padding: 0;
+  font-family: 'Cormorant Garamond', serif;
+  background-color: #314e2e;
+  color: #f5f5f5;
 }
 
-/* 2) Contenedor principal */
+/* 2) Contenedor principal y filigranas estáticas */
 .App {
   position: relative;
-  background-color: #314e2e;
   min-height: 100vh;
   padding: 2rem 1rem;
   box-sizing: border-box;
+  /* Fondo base con filigranas en esquinas */
+  background-color: #314e2e;
+  background-image: url('./img/filigranaIz.svg'), url('./img/filigranaDer.svg');
+  background-repeat: no-repeat, no-repeat;
+  background-position: left top, right top;
+  background-size: 20% auto, 20% auto;
   overflow: visible;
 }
 
-/* 3) Filigranas en las esquinas */
-.App::before,
-.App::after {
-  content: "";
-  position: absolute;
-  top: 0;
-  width: 600px;
-  height: 600px;
-  pointer-events: none;
-  z-index: 1;
-}
-.App::before {
-  left: 0;
-  background: url('./img/filigranaIz.svg') no-repeat center/contain;
-}
-.App::after {
-  right: 0;
-  background: url('./img/filigranaDer.svg') no-repeat center/contain;
-}
-
 /* 4) Logo y título */
-.logo-principal {
-  width: 180px;
-  display: block;
-  margin: 0 auto 1rem;
-  position: relative;
-  z-index: 2;
-}
 .App h1 {
   text-align: center;
-  color: #f0f0f0;
-  font-family: "Montserrat", sans-serif;
-  font-size: 2.4rem;
-  margin-bottom: 1.5rem;
-  text-shadow: 1px 1px 2px rgba(219, 217, 217, 0.8);
+  font-size: 3rem;
+  font-weight: 700;
+  letter-spacing: 2px;
+  color: #e5ffe2;
+  margin-bottom: 2rem;
   position: relative;
   z-index: 2;
 }
@@ -62,168 +44,136 @@ html, body, #root {
 .menu-categorias {
   display: flex;
   justify-content: center;
+  flex-wrap: wrap;
   gap: 1rem;
   margin-bottom: 2rem;
-  position: relative;
   z-index: 2;
 }
 .menu-categorias button {
-  background-color: #1a301a;
-  color: #a8d5a2;
-  border: 1px solid #2e5230;
-  padding: 1.7rem 1.2rem;
-  border-radius: 6px;
+  background-color: transparent;
+  color: #e5ffe2;
+  border: 1px solid #a8d5a2;
+  padding: 0.7rem 1.5rem;
+  border-radius: 30px;
   cursor: pointer;
-  transition: background-color 0.2s, transform 0.2s;
+  font-size: 1.1rem;
+  transition: background-color 0.3s ease, color 0.3s ease;
 }
-.menu-categorias button:hover {
-  background-color: #2e5230;
-  transform: scale(1.05);
-}
+.menu-categorias button:hover,
 .menu-categorias button.activo {
-  background-color: #3f7043;
-  color: #fff;
+  background-color: #a8d5a2;
+  color: #1a301a;
 }
 
 /* 6) Instagram */
 .contacto-instagram {
   text-align: center;
   margin-bottom: 2rem;
-  position: relative;
-  z-index: 2;
+  font-size: 1.2rem;
+  font-weight: 500;
 }
 .contacto-instagram a {
   text-decoration: none;
-  color: #2bff00;
+  color: #a8f7a2;
   font-weight: bold;
-  font-size: 1.1rem;
+  display: block;
+  margin-bottom: 0.3rem;
 }
 
 /* 7) Mensajes */
-.mensaje-artesanal,
-.mensaje-atencion {
-  max-width: 800px;
-  margin: 4rem auto;
-  padding: 3rem 2rem;
-  background-color: #243d24;
-  border-left: 4px solid #21633c;
-  color: #c8f7c5;
+.mensaje-artesanal {
+  max-width: 700px;
+  margin: 3rem auto 2rem;
+  padding: 2rem;
+  background-color: #1f3a1f;
+  border-left: 5px solid #a8d5a2;
+  color: #d5f9d0;
+  font-size: 1.1rem;
   font-style: italic;
-  line-height: 1.7;
-  position: relative;
-  z-index: 2;
-}
-.mensaje-atencion {
-  background: none;
-  border: none;
-  color: #e0e0e0;
-  font-style: normal;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0,0,0,0.3);
+  text-align: center;
 }
 
-/* 8) Temas */
+/* 8) Temas desplegables */
 .menu-temas {
   display: flex;
   justify-content: center;
   flex-wrap: wrap;
   gap: 0.6rem;
   margin: 1rem 0 2rem;
-  position: relative;
   z-index: 2;
 }
 .menu-temas button {
-  background-color: #1a301a;
-  color: #a8d5a2;
-  border: 1px solid #2e5230;
-  padding: 0.4rem 0.8rem;
-  border-radius: 5px;
+  background-color: transparent;
+  color: #c2f1c2;
+  border: 1px solid #a8d5a2;
+  padding: 0.5rem 1rem;
+  border-radius: 20px;
+  font-size: 1rem;
   cursor: pointer;
-  transition: background-color 0.2s, transform 0.2s;
+  transition: all 0.3s ease;
 }
-.menu-temas button:hover {
-  background-color: #2e5230;
-  transform: scale(1.05);
-}
+.menu-temas button:hover,
 .menu-temas button.activo {
-  background-color: #3f7043;
-  color: #fff;
+  background-color: #a8d5a2;
+  color: #1a301a;
 }
 
-/* 9) Forzado de grid: 3 columnas desktop, 2 tablet, 1 móvil */
+/* 9) Grid de productos */
 .catalogo {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 1.5rem;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 2rem;
   margin: 0 auto;
-  padding-top: 1rem;
-  max-width: 900px;   /* ancho para 3 tarjetas ~280px + gaps */
-  position: relative;
+  max-width: 1000px;
   z-index: 2;
 }
-@media (max-width: 900px) {
-  .catalogo {
-    grid-template-columns: repeat(2, 1fr);
-    max-width: 600px;
-  }
-}
-@media (max-width: 600px) {
-  .catalogo {
-    grid-template-columns: 1fr;
-    max-width: 400px;
-  }
-}
-.producto p {
-  color: #ffffff;       /* fuerza texto blanco */
-}
-/* 10) Tarjetas y contenedor de imagen cuadrado */
+
+/* 10) Producto */
 .producto {
-  background-color: #183318;
+  background-color: #223822;
   border-radius: 10px;
   padding: 1rem;
   text-align: center;
-  position: relative;
-  overflow: hidden;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
+  box-shadow: 0 0 15px rgba(0,0,0,0.2);
 }
 .producto:hover {
   transform: translateY(-5px);
-  box-shadow: 0 8px 20px rgba(12, 243, 43, 0.6);
+  box-shadow: 0 8px 16px rgba(169, 255, 181, 0.3);
 }
 
-/* 10a) Contenedor cuadrado para la imagen */
+/* Imagen */
 .imagen-con-hover {
   width: 100%;
-  max-width: 300px;     /* ancho máximo mayor */
   aspect-ratio: 1 / 1;
   overflow: hidden;
   border-radius: 10px;
   position: relative;
-  margin: 0 auto;  
+  margin-bottom: 1rem;
 }
-/* 10b) Imágenes llenando el contenedor cuadrado */
-.imagen-con-hover img,
-.imagen-con-hover .CarruselImagenes img {
+.imagen-con-hover img {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  object-position: center;
+  transition: transform 0.4s ease;
   display: block;
-  transition: transform 0.3s ease;
 }
-.imagen-con-hover img:hover,
-.imagen-con-hover .CarruselImagenes img:hover {
-  transform: scale(2.05);
+.imagen-con-hover img:hover {
+  transform: scale(1.2);
 }
 
-/* 11) Precio-hover */
+/* Precio flotante */
 .precio-hover {
   position: absolute;
   bottom: 10px;
   right: 10px;
-  background: rgba(188, 240, 188, 0.9);
-  color: #258b1c;
+  background: #e8ffe8;
+  color: #1a301a;
   font-weight: bold;
   font-size: 0.9rem;
-  padding: 0.3rem 0.6rem;
+  padding: 0.4rem 0.7rem;
   border-radius: 5px;
   opacity: 0;
   transition: opacity 0.3s ease;
@@ -231,47 +181,39 @@ html, body, #root {
 .producto:hover .precio-hover {
   opacity: 1;
 }
-/* --------------------------------------------- */
-/*  Media queries para móvil:                    */
-/* --------------------------------------------- */
 
+/* Texto producto */
+.producto h3 {
+  color: #f5f5f5;
+  font-size: 1.3rem;
+  margin: 0.5rem 0;
+}
+.producto p {
+  color: #e2e2e2;
+  font-size: 0.95rem;
+  line-height: 1.5;
+}
+
+/* Responsive */
 @media (max-width: 768px) {
-  /* 1) Filigranas más pequeñas en móvil */
-  .App::before,
-  .App::after {
-    width: 150px;
-    height: 150px;
-  }
-
-  /* 2) Reducción de paddings en el contenedor */
   .App {
-    padding: 1rem 0.5rem;
+    background-position: left top, right top;
+    background-size: 30% auto, 30% auto;
   }
-
-  /* 3) Ajuste del menú de categorías: que envuelva */
-  .menu-categorias {
-    flex-wrap: wrap;
-    gap: 0.5rem;
-    margin-bottom: 1rem;
+  .App {
+    padding: 1rem;
   }
-  .menu-categorias button {
-    padding: 0.5rem 0.8rem;
-    font-size: 0.9rem;
-  }
-
-  /* 4) Ajuste del título y subtítulo */
-  .app-title {
-    font-size: 1.8rem;
-  }
-  .app-subtitle {
-    font-size: 1.2rem;
-    margin-bottom: 1rem;
-  }
-
-  /* 5) Ajuste del contenedor de productos */
   .catalogo {
-    max-width: 100%;
-    padding: 0;
     gap: 1rem;
+    padding: 0;
+  }
+  .mensaje-artesanal {
+    padding: 1.5rem 1rem;
+    font-size: 1rem;
+  }
+  .menu-categorias button,
+  .menu-temas button {
+    font-size: 0.9rem;
+    padding: 0.4rem 0.8rem;
   }
 }

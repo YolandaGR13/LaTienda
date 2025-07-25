@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 import "./Catalogo.css";
 import { velas } from "./data/velas";
 import { preparados } from "./data/preparados";
@@ -25,101 +25,101 @@ const temasPreparados = [
   "kit",
 ];
 
-const Catalogo = () => {
-  const [categoriaSeleccionada, setCategoriaSeleccionada] = useState("velas");
-  const [temaSeleccionado, setTemaSeleccionado] = useState("todos");
+const categorias = ["velas", "preparados", "rituales", "consultas"];
 
-  // Determinar productos y temas según categoría
-  let productos = [];
-  let temas = [];
+export default function Catalogo() {
+  const [categoria, setCategoria] = useState("velas");
+  const [tema, setTema] = useState("todos");
+  const [subOpen, setSubOpen] = useState(false);
+  const timeoutRef = useRef(null);
 
-  switch (categoriaSeleccionada) {
-    case "velas":
-      productos = velas;
-      temas = temasVelas;
-      break;
-    case "preparados":
-      productos = preparados;
-      temas = temasPreparados;
-      break;
-    case "rituales":
-      productos = rituales;
-      temas = []; // sin menú de temas
-      break;
-    case "consultas":
-      productos = consultas;
-      temas = []; // sin menú de temas
-      break;
-    default:
-      productos = [];
-      temas = [];
-  }
+  // Productos y temas según categoría
+  let productos = { velas, preparados, rituales, consultas }[categoria] || [];
+  let temasActivos =
+    categoria === "velas" ? temasVelas :
+    categoria === "preparados" ? temasPreparados : [];
 
-  // Filtrar por tema solo para Velas o Preparados
-  if (
-    ["velas", "preparados"].includes(categoriaSeleccionada) &&
-    temaSeleccionado !== "todos"
-  ) {
+  // Filtrar si tema distinto de todos
+  if (["velas", "preparados"].includes(categoria) && tema !== "todos") {
     productos = productos.filter((p) =>
-      p.tema?.map((t) => t.toLowerCase()).includes(temaSeleccionado)
+      p.tema?.map(t => t.toLowerCase()).includes(tema)
     );
   }
 
+  const handleCatClick = (cat) => {
+    // Cambia categoría y resetea tema, abre submenú si aplica
+    setCategoria(cat);
+    setTema("todos");
+    if (["velas", "preparados"].includes(cat)) {
+      setSubOpen(true);
+    } else {
+      setSubOpen(false);
+    }
+  };
+
+  const handleMouseLeave = () => {
+    // Al salir de submenú, programa cierre en 2 s
+    clearTimeout(timeoutRef.current);
+    timeoutRef.current = setTimeout(() => setSubOpen(false), 2000);
+  };
+  const handleMouseEnter = () => {
+    // Si vuelve a entrar, cancelamos cierre
+    clearTimeout(timeoutRef.current);
+  };
+
   return (
-    
-    <div>
+    <div className="App">
 
-        <div className="contacto-instagram">
-        <a href="https://www.instagram.com/MapacheTarot" target="_blank" rel="noopener noreferrer">
-          📸 Sígueme y contáctame por Instagram
-        </a>
-        <br />
-                <a href="https://www.tiktok.com/@mapachetarot13" target="_blank" rel="noopener noreferrer">
-          🎵 Sígueme y contáctame por TikTok
-        </a>
 
+      {/* Contacto */}
+      <div className="contacto-instagram">
+        <a href="https://instagram.com/MapacheTarot" target="_blank" rel="noopener noreferrer">
+          📸 Sígueme en Instagram
+        </a>
+        <a href="https://tiktok.com/@mapachetarot13" target="_blank" rel="noopener noreferrer">
+          🎵 Sígueme en TikTok
+        </a>
       </div>
 
-
-  
+      {/* Mensaje */}
       <div className="mensaje-artesanal">
-         Todos los productos están hechos a mano y ritualizados con intención.  
+        Todos los productos están hechos a mano y ritualizados con intención.
         Para encargar o personalizar, contáctame por mensaje privado en Instagram.
       </div>
-      {/* Menú de categorías */}
 
+      {/* Menú de categorías */}
       <div className="menu-categorias">
-        {["velas", "preparados", "rituales", "consultas"].map((cat) => (
+        {categorias.map((cat) => (
           <button
             key={cat}
-            className={categoriaSeleccionada === cat ? "activo" : ""}
-            onClick={() => {
-              setCategoriaSeleccionada(cat);
-              setTemaSeleccionado("todos");
-            }}
+            className={categoria === cat ? "activo" : ""}
+            onClick={() => handleCatClick(cat)}
           >
             {cat.charAt(0).toUpperCase() + cat.slice(1)}
           </button>
         ))}
       </div>
 
-      {/* Menú de temas: solo para Velas y Preparados */}
-      {temas.length > 0 && (
-        <div className="menu-temas">
-          {temas.map((tema) => (
+      {/* Submenú de temas (click + autohide) */}
+      {subOpen && temasActivos.length > 0 && (
+        <div
+          className="menu-temas"
+          onMouseLeave={handleMouseLeave}
+          onMouseEnter={handleMouseEnter}
+        >
+          {temasActivos.map((t) => (
             <button
-              key={tema}
-              className={temaSeleccionado === tema ? "activo" : ""}
-              onClick={() => setTemaSeleccionado(tema)}
+              key={t}
+              className={tema === t ? "activo" : ""}
+              onClick={() => setTema(t)}
             >
-              {tema.charAt(0).toUpperCase() + tema.slice(1)}
+              {t.charAt(0).toUpperCase() + t.slice(1)}
             </button>
           ))}
         </div>
       )}
 
-   
-      {/* Catálogo de productos */}
+      {/* Catálogo */}
       <div className="catalogo">
         {productos.length > 0 ? (
           productos.map((item) => (
@@ -135,26 +135,20 @@ const Catalogo = () => {
               <h3>{item.nombre}</h3>
               <p>{item.descripcion}</p>
               {item.Material && (
-                <p>
-                  <strong>Material:</strong> {item.Material}
-                </p>
+                <p><strong>Material:</strong> {item.Material}</p>
               )}
             </div>
           ))
         ) : (
           <p className="sin-productos">
-            {`${
-              categoriaSeleccionada === "consultas"
-                ? "Aquí puedes agendar tu consulta próximamente."
-                : categoriaSeleccionada === "rituales"
-                ? "Explora nuestros rituales muy pronto."
-                : "No hay productos para esta categoría."
-            }`}
+            {categoria === "consultas"
+              ? "Aquí puedes agendar tu consulta próximamente."
+              : categoria === "rituales"
+              ? "Explora nuestros rituales muy pronto."
+              : "No hay productos para esta categoría."}
           </p>
         )}
       </div>
     </div>
   );
-};
-
-export default Catalogo;
+}
