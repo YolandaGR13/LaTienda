@@ -13,7 +13,7 @@ export const velas= [
     nombre: "Velon gigante personalizado",
     imagen: require("../img/velonGigante.png"),
     descripcion: "Se pueden elegir desde los colores,piedras y componentes. Medida 16cm x 8cm",
-    precio: "25€",
+    precio: "26€",
     Material: "Cera de abeja o soja",
     tema: ["abundancia", "amor", "protección", "ofrendas"],
   },
