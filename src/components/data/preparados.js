@@ -81,6 +81,15 @@ export const preparados= [
     tema: ["amor"],
     Material: "Macerado de hierbas y semillas "
   },
+        {
+    categoria: "preparados",
+    nombre: "🪲Aceite de garrapata🪲",
+    imagen: require("../img/aceiteVen.png"),
+    descripcion: "⚠️Cuidado con este aceite por alta toxicidad⚠️(No topico). Cant:50ml",
+    precio: "8€",
+    tema: ["amor"],
+    Material: "Macerado de hierbas y semillas "
+  },
   {
     categoria: "preparados",
     nombre: "Oleum Victoris ",
