@@ -12,7 +12,7 @@ export const velas= [
     categoria: "velas artesanales",
     nombre: "Velon gigante personalizado",
     imagen: require("../img/velonGigante.png"),
-    descripcion: "Se pueden elegir desde los colores,piedras y componentes. Medida 16cm x 8cm",
+    descripcion: " Medida 16cm x 8cm, tarda 3 dias em hacer aprox.",
     precio: "26€",
     Material: "Cera de abeja o soja",
     tema: ["abundancia", "amor", "protección", "ofrendas"],

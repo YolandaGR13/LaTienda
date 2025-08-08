@@ -171,13 +171,15 @@ html, body, #root {
   right: 10px;
   background: #e8ffe8;
   color: #1a301a;
-  font-weight: bold;
-  font-size: 0.9rem;
+  font-weight: 800; /* mucho más grueso */
+  font-size: 1.1rem; /* un poco más grande */
+  letter-spacing: 0.5px; /* separa un pelín los caracteres */
   padding: 0.4rem 0.7rem;
   border-radius: 5px;
   opacity: 0;
   transition: opacity 0.3s ease;
 }
+
 .producto:hover .precio-hover {
   opacity: 1;
 }
