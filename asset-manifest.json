@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.css": "/LaTienda/static/css/main.0080bb7c.css",
-    "main.js": "/LaTienda/static/js/main.6687b371.js",
+    "main.css": "/LaTienda/static/css/main.6cefa78c.css",
+    "main.js": "/LaTienda/static/js/main.9e01cd2e.js",
     "static/js/453.678b16ca.chunk.js": "/LaTienda/static/js/453.678b16ca.chunk.js",
     "static/media/vudu.png": "/LaTienda/static/media/vudu.531dc3e8ad9a247d44e5.png",
     "static/media/maraca.png": "/LaTienda/static/media/maraca.a0e07d79d67ec5a01490.png",
@@ -35,6 +35,7 @@
     "static/media/dominioR.png": "/LaTienda/static/media/dominioR.6eb66b2ce48ae96dfc23.png",
     "static/media/general.png": "/LaTienda/static/media/general.b2c7f7d542032046b816.png",
     "static/media/amorP.png": "/LaTienda/static/media/amorP.b15a6f669b79c94589d8.png",
+    "static/media/peneLado.png": "/LaTienda/static/media/peneLado.1e1a00f6990009e68c5f.png",
     "static/media/elegua.png": "/LaTienda/static/media/elegua.cb1e3a61f35481bb08c4.png",
     "static/media/AHierbas.png": "/LaTienda/static/media/AHierbas.134504c25493fb70d8ff.png",
     "static/media/calavera2.png": "/LaTienda/static/media/calavera2.b81c7988a8b5f9eb85b4.png",
@@ -43,23 +44,25 @@
     "static/media/pomba.png": "/LaTienda/static/media/pomba.e736fb1802fe8ac01832.png",
     "static/media/velonGigante.png": "/LaTienda/static/media/velonGigante.0ff5cf0c807ad4fad12e.png",
     "static/media/volteo.png": "/LaTienda/static/media/volteo.dd0c8df709c06b8d686b.png",
+    "static/media/corazonAnatomicoGrande.png": "/LaTienda/static/media/corazonAnatomicoGrande.3ee405ea3ced2ed81339.png",
     "static/media/tumbatrabajos.png": "/LaTienda/static/media/tumbatrabajos.0d75dc981d0104b6f9b7.png",
     "static/media/protePiedra.png": "/LaTienda/static/media/protePiedra.a5baa9ce370caaccbbd1.png",
     "static/media/prote3.png": "/LaTienda/static/media/prote3.1ad3316b6a15b1662318.png",
     "static/media/normal.png": "/LaTienda/static/media/normal.89d08479f57932a332dc.png",
     "static/media/uAbre.png": "/LaTienda/static/media/uAbre.a419aa3edee4015ef12b.png",
     "static/media/amorNuevo.png": "/LaTienda/static/media/amorNuevo.7df4ba461da3de9c6bb5.png",
+    "static/media/vulva.png": "/LaTienda/static/media/vulva.58eca6212b0cf64d6001.png",
     "static/media/amarre.png": "/LaTienda/static/media/amarre.6927f13ec266b1005823.png",
     "static/media/kit.png": "/LaTienda/static/media/kit.8f4a77fb026eb4297688.png",
     "static/media/filigranaIz.svg": "/LaTienda/static/media/filigranaIz.fe100e1b0cb0c11d24df.svg",
     "static/media/filigranaDer.svg": "/LaTienda/static/media/filigranaDer.9a03cc3a51a9a5384284.svg",
     "index.html": "/LaTienda/index.html",
-    "main.0080bb7c.css.map": "/LaTienda/static/css/main.0080bb7c.css.map",
-    "main.6687b371.js.map": "/LaTienda/static/js/main.6687b371.js.map",
+    "main.6cefa78c.css.map": "/LaTienda/static/css/main.6cefa78c.css.map",
+    "main.9e01cd2e.js.map": "/LaTienda/static/js/main.9e01cd2e.js.map",
     "453.678b16ca.chunk.js.map": "/LaTienda/static/js/453.678b16ca.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.0080bb7c.css",
-    "static/js/main.6687b371.js"
+    "static/css/main.6cefa78c.css",
+    "static/js/main.9e01cd2e.js"
   ]
 }
