@@ -1,7 +1,7 @@
 export const velas= [
   {
     categoria: "velas artesanales",
-    nombre: "Cirio/vela/velón personalizada",
+    nombre: "Cirio/vela personalizada",
     imagen: [require("../img/velas2.png"),require("../img/prote3.png"),],
     descripcion: "Se pueden elegir desde los colores,piedras y componentes.",
     precio: "Cirio: 2€ Vela: 6€",
