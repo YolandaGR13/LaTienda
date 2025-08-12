@@ -57,7 +57,7 @@ export const velas= [
   },    {
     categoria: "velas artesanales",
     nombre: "Velaza de corazón real ritualizada",
-    imagen: require("../img/corazonAnatomico.png"),
+    imagen: require("../img/corazonAnatomicoGrande.png"),
     descripcion: "Para rituales de amor o ataques ",
     precio: "16€",
     Material: "Cera de abeja o soja",
