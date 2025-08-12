@@ -59,7 +59,7 @@ export const velas= [
     nombre: "Velaza de corazón real ritualizada",
     imagen: require("../img/corazonAnatomicoGrande.png"),
     descripcion: "Para rituales de amor o ataques ",
-    precio: "16€",
+    precio: "12€",
     Material: "Cera de abeja o soja",
     tema: ["amor", "protección", "ofrendas","muerte"],
 
