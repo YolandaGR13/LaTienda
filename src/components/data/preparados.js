@@ -81,6 +81,15 @@ export const preparados= [
     tema: ["amor"],
     Material: "Macerado de hierbas y semillas "
   },
+        {
+    categoria: "preparados",
+    nombre: "🪲Aceite de garrapata🪲",
+    imagen: require("../img/aceiteVen.png"),
+    descripcion: "⚠️Cuidado con este aceite por alta toxicidad⚠️(No topico). Cant:50ml",
+    precio: "8€",
+    tema: ["amor"],
+    Material: "Macerado de hierbas y semillas "
+  },
   {
     categoria: "preparados",
     nombre: "Oleum Victoris ",
@@ -108,6 +117,15 @@ export const preparados= [
     tema: ["amor"],
     Material: "Macerado de hierbas y semillas "
   },
+    {
+    categoria: "preparados",
+    nombre: "Unguento pies Abrecaminos",
+    imagen: require("../img/uAbre.png"),
+    descripcion: "¿Por donde se hacen los caminos nuevos? Por los pies",
+    precio: "5€",
+    tema: ["abundancia"],
+    Material: "Macerado de hierbas y oliva "
+  },
       {
     categoria: "preparados",
     nombre: "Tumba y hace !PUM!",
@@ -121,7 +139,7 @@ export const preparados= [
     categoria: "preparados",
     nombre: "Kit personalizable pequeño ",
     imagen: require("../img/kit.png"),
-    descripcion: "Kit basico de la intención que quieras",
+    descripcion: "Kit de una sola intención que tú quieras.Todas las velas mini/vela + 1 o 2 preparados",
     precio: "15€",
     tema: ["kit"],
     Material: "Kit personazable:proteccion, amor, abundancia,etc.",
@@ -130,7 +148,7 @@ export const preparados= [
     categoria: "preparados",
     nombre: "Kit personalizable mediano ",
     imagen: require("../img/kit.png"),
-    descripcion: "Kit basico de la intención que quieras",
+    descripcion: "Kit de la intención que quieras.Contiene: 4 cosas de tu elección(2 velas y 2 preparados, 1 vela y 3 preparados...) No entra velones ni servidor G.",
     precio: "20€",
     tema: ["kit"],
     Material: "Kit personazable:proteccion, amor, abundancia,etc.",
@@ -139,7 +157,7 @@ export const preparados= [
     categoria: "preparados",
     nombre: "Kit personalizable grande ",
     imagen: require("../img/kit.png"),
-    descripcion: "Kit basico de la intención que quieras",
+    descripcion: "Velon equivale a 3 velas. Contiene: 5 cosas de tu elección. No entran servidores G.",
     precio: "30€",
     tema: ["kit"],
     Material: "Kit personazable:proteccion, amor, abundancia,etc.",
@@ -149,7 +167,7 @@ export const preparados= [
     nombre: "Muñeco o servidor ",
     imagen: require("../img/vudu.png"),
     descripcion: "Muñeco enlazado a alguien o servidor con la intencion que quieras",
-    precio: "S:15€ G:35€",
+    precio: "S: 15€  G: 35€",
     tema: ["kit","amor","proteccion","salud"],
     Material: "Goma Eva o crochet.",
   },

@@ -86,6 +86,11 @@ export default function Catalogo() {
         Todos los productos están hechos a mano y ritualizados con intención.
         Para encargar o personalizar, contáctame por mensaje privado en Instagram.
       </div>
+      <div className="mensaje-envio">
+        Gastos de envio a España peninsular: 5€.
+        Gastos de envio a Baleares, Canarias, Ceuta y Melilla: 10€.
+        Gastos de envio superior a 80€: gratis.
+      </div>
 
       {/* Menú de categorías */}
       <div className="menu-categorias">
