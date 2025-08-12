@@ -94,6 +94,19 @@ html, body, #root {
   box-shadow: 0 0 10px rgba(0,0,0,0.3);
   text-align: center;
 }
+.mensaje-envio {
+  max-width: 700px;
+  margin: 2rem auto;
+  padding: 1.5rem;
+  background-color: #306e30;
+  border-left: 5px solid #a8d5a2;
+  color: #d5f9d0;
+  font-size: 1.1rem;
+  font-style: italic;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0,0,0,0.3);
+  text-align: center;
+}
 
 /* 8) Temas desplegables */
 .menu-temas {

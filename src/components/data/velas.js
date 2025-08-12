@@ -116,7 +116,7 @@ export const velas= [
     {
     categoria:"velas artesanales",
     nombre: "Vela pene personalizada",
-    imagen:[ require("../img/peneLado.png"), require("../img/pene.png")],
+    imagen: require("../img/peneLado.png"),
     descripcion: "Vela personalizada con la ritualización que necesites.",
     precio: "7€",
     Material: "Cera de abeja o soja",
@@ -127,7 +127,7 @@ export const velas= [
     nombre: "Vela mujer personalizada",
     imagen:[require("../img/mujer.png"), require("../img/mujer2.png")],
     descripcion: "Vela personalizada con la ritualización que necesites.",
-    precio: "8€",
+    precio: "9€",
     Material: "Cera de abeja o soja",
     tema: ["amor", "protección", "ofrendas"],
   },    {
