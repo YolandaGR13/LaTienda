@@ -54,6 +54,15 @@ export const velas= [
     Material: "Cera de abeja o soja",
     tema: ["amor", "protección", "ofrendas","muerte"],
 
+  },    {
+    categoria: "velas artesanales",
+    nombre: "Velaza de corazón real ritualizada",
+    imagen: require("../img/corazonAnatomico.png"),
+    descripcion: "Para rituales de amor o ataques ",
+    precio: "16€",
+    Material: "Cera de abeja o soja",
+    tema: ["amor", "protección", "ofrendas","muerte"],
+
   },
   {
     categoria: "velas artesanales",
@@ -100,7 +109,16 @@ export const velas= [
     nombre: "Vela hombre personalizada",
     imagen: require("../img/Torso Hombre.png"),
     descripcion: "Vela personalizada con la ritualización que necesites.",
-    precio: "8€",
+    precio: "9€",
+    Material: "Cera de abeja o soja",
+    tema: ["amor", "protección", "ofrendas"],
+  },
+    {
+    categoria:"velas artesanales",
+    nombre: "Vela pene personalizada",
+    imagen:[ require("../img/peneLado.png"), require("../img/pene.png")],
+    descripcion: "Vela personalizada con la ritualización que necesites.",
+    precio: "7€",
     Material: "Cera de abeja o soja",
     tema: ["amor", "protección", "ofrendas"],
   },
@@ -110,6 +128,14 @@ export const velas= [
     imagen:[require("../img/mujer.png"), require("../img/mujer2.png")],
     descripcion: "Vela personalizada con la ritualización que necesites.",
     precio: "8€",
+    Material: "Cera de abeja o soja",
+    tema: ["amor", "protección", "ofrendas"],
+  },    {
+    categoria:"velas artesanales",
+    nombre: "Mini vela vulva personalizada",
+    imagen:require("../img/vulva.png"),
+    descripcion: "Vela personalizada con la ritualización que necesites.",
+    precio: "5€",
     Material: "Cera de abeja o soja",
     tema: ["amor", "protección", "ofrendas"],
   },
