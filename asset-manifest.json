@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/LaTienda/static/css/main.6cefa78c.css",
-    "main.js": "/LaTienda/static/js/main.9e01cd2e.js",
+    "main.js": "/LaTienda/static/js/main.86805535.js",
     "static/js/453.678b16ca.chunk.js": "/LaTienda/static/js/453.678b16ca.chunk.js",
     "static/media/vudu.png": "/LaTienda/static/media/vudu.531dc3e8ad9a247d44e5.png",
     "static/media/maraca.png": "/LaTienda/static/media/maraca.a0e07d79d67ec5a01490.png",
@@ -58,11 +58,11 @@
     "static/media/filigranaDer.svg": "/LaTienda/static/media/filigranaDer.9a03cc3a51a9a5384284.svg",
     "index.html": "/LaTienda/index.html",
     "main.6cefa78c.css.map": "/LaTienda/static/css/main.6cefa78c.css.map",
-    "main.9e01cd2e.js.map": "/LaTienda/static/js/main.9e01cd2e.js.map",
+    "main.86805535.js.map": "/LaTienda/static/js/main.86805535.js.map",
     "453.678b16ca.chunk.js.map": "/LaTienda/static/js/453.678b16ca.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.6cefa78c.css",
-    "static/js/main.9e01cd2e.js"
+    "static/js/main.86805535.js"
   ]
 }
