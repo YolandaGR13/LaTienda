@@ -7,7 +7,7 @@ function App() {
   return (
     <div className="App">
       {/* 1. Nombre arriba */}
-      <h1 className="app-title">El mapache y la lechuza</h1>
+      <h1 className="app-title">Mapache Shop</h1>
 
       {/* 2. Logo (favicon) debajo */}
       <img src={logo} alt="logo esotérico" className="logo-principal" />

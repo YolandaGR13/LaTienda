@@ -183,5 +183,41 @@ export const velas= [
     precio: "9€",
     Material: "Cera de abeja o soja ",
     tema: ["protección", "ofrendas","muerte"],
-  }
+  },
+  {
+    categoria: "velas artesanales",
+    nombre: "Vela altar Baphomet",
+    imagen:require("../img/baphomet.png"), 
+    descripcion: "Vela de ofrenda que sirve como mini altar portatil,conectar con el arquetipo o incluso amuleto. Tú decides el uso ",
+    precio: "5€",
+    tema: ["ofrendas","espiritualidad","satanismo"],
+    Material: "Diverso"
+  },
+  {
+    categoria: "velas artesanales",
+    nombre: "Vela altar Lilith",
+    imagen:[require("../img/lilith.png"),require("../img/lilithVela.png"),], 
+    descripcion: "Vela de ofrenda que sirve como mini altar portatil,conectar con el arquetipo o incluso amuleto. Tú decides el uso ",
+    precio: "5€",
+    tema: ["ofrendas","espiritualidad","satanismo"],
+    Material: "Diverso"
+  },
+
+
+
+  // 1–10
+  { categoria:"velas artesanales", nombre:"Vela altar Bael", imagen:require("../img/bael.png"), descripcion:"Vela de ofrenda concebida como mini altar portátil para conexión simbólica y trabajo arquetípico.", precio:"5€", tema:["ofrendas","espiritualidad","goetia"], material:"Diverso" },
+  { categoria:"velas artesanales", nombre:"Vela altar Agares", imagen:require("../img/agares.png"), descripcion:"Vela de ofrenda utilizada como soporte simbólico para conexión arquetípica.", precio:"5€", tema:["ofrendas","espiritualidad","goetia"], material:"Diverso" },
+  { categoria:"velas artesanales", nombre:"Vela altar Vassago", imagen:require("../img/vassago.png"), descripcion:"Mini altar portátil orientado al trabajo introspectivo y simbólico.", precio:"5€", tema:["ofrendas","espiritualidad","goetia"], material:"Diverso" },
+  { categoria:"velas artesanales", nombre:"Vela altar Samigina", imagen:require("../img/samigina.png"), descripcion:"Vela ritual para conexión contemplativa con el arquetipo.", precio:"5€", tema:["ofrendas","espiritualidad","goetia","conocimiento"], material:"Diverso" },
+  { categoria:"velas artesanales", nombre:"Vela altar Marbas", imagen:require("../img/marbas.png"), descripcion:"Vela de ofrenda simbólica asociada a procesos de transformación.", precio:"5€", tema:["ofrendas","espiritualidad","goetia","transformacion"], material:"Diverso" },
+  
+  { categoria:"velas artesanales", nombre:"Vela altar Forneus", imagen:[require("../img/forneus.png"),require("../img/forneusVela.png")], descripcion:"Vela de ofrenda concebida como mini altar portátil para conexión simbólica y trabajo arquetípico.", precio:"5€", tema:["ofrendas","espiritualidad","goetia","conocimiento"], material:"Diverso" },
+  
+  { categoria:"velas artesanales", nombre:"Vela altar Furfur", imagen:[require("../img/furfur.png"),require("../img/furfurVela.png")], descripcion:"Vela simbólica vinculada a la intensidad emocional.", precio:"5€", tema:["ofrendas","espiritualidad","goetia","pasiones"], material:"Diverso" },
+  { categoria:"velas artesanales", nombre:"Vela altar Marchosias", imagen:[require("../img/marchosias.png"),require("../img/marchosiasVela.png")], descripcion:"Mini altar simbólico asociado al valor y la firmeza.", precio:"5€", tema:["ofrendas","espiritualidad","goetia","voluntad"], material:"Diverso" },
+ 
+  { categoria:"velas artesanales", nombre:"Vela altar Aim", imagen:[require("../img/aim.png"),require("../img/aimVela.png")], descripcion:"Mini altar simbólico asociado a la destrucción, fuego y verdad.", precio:"5€", tema:["ofrendas","espiritualidad","goetia","poder"], material:"Diverso" },
+  { categoria:"velas artesanales", nombre:"Vela altar Goetia", imagen:require("../img/sigilosGoetia.png"), descripcion:"Vela altar a elegir de cualquier demonio.", precio:"5€", tema:["ofrendas","espiritualidad","goetia","naturaleza"], material:"Diverso" },
+
 ];

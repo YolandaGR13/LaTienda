@@ -3,7 +3,7 @@
 }
 
 .logo-principal {
-  width: 150px;         /* ajusta el tamaño que tú quieras */
+  width: 300px;         /* ajusta el tamaño que tú quieras */
   height: auto;
   display: block;
   margin: 0 auto 1rem auto; /* centrado + separación abajo */

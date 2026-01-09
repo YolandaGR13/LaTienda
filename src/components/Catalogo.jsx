@@ -23,6 +23,7 @@ const temasPreparados = [
   "ofrendas",
   "espiritualidad",
   "kit",
+  "satanismo"
 ];
 
 const categorias = ["velas", "preparados", "rituales", "consultas"];

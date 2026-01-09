@@ -39,7 +39,7 @@ export const preparados= [
     {
     categoria: "preparados",
     nombre: "Hidrolato Amame",
-    imagen: require("../img/botellaBelleza.png"),
+    imagen: require("../img/botellaAmame.png"),
     descripcion: "Todo el que se acerque a ti sentirá amor y ternura.Cant:100ml",
     precio: "6€",
     tema: ["amor"],
@@ -111,7 +111,7 @@ export const preparados= [
     {
     categoria: "preparados",
     nombre: "Aceite Abrecaminos",
-    imagen: require("../img/aceiteVen.png"),
+    imagen: require("../img/aceiteAbrecaminos.png"),
     descripcion: "Diseñado para eliminar bloqueos y atraer nuevas oportunidades(No apto para pieles sensibles). Cant:50ml",
     precio: "7€",
     tema: ["amor"],
@@ -120,7 +120,7 @@ export const preparados= [
     {
     categoria: "preparados",
     nombre: "Unguento pies Abrecaminos",
-    imagen: require("../img/uAbre.png"),
+    imagen: require("../img/unAbre.png"),
     descripcion: "¿Por donde se hacen los caminos nuevos? Por los pies",
     precio: "5€",
     tema: ["abundancia"],
@@ -181,7 +181,7 @@ export const preparados= [
 
     ],
     descripcion: "Elekes y mazos personalizados",
-    precio: "6€",
+    precio: "6-12€",
     tema: ["ofrendas","espiritualidad"],
     Material: "Diverso",
   },
@@ -193,6 +193,6 @@ export const preparados= [
     precio: "Variable",
     tema: ["ofrendas","espiritualidad"],
     Material: "Diverso"
-  }
-
+  },
+  
 ]
