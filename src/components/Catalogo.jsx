@@ -6,9 +6,10 @@ import { rituales } from "./data/rituales";
 import { consultas } from "./data/consultas";
 import CarruselImagenes from "./CarruselImagenes";
 import { parseEuroPrice, formatEuro, buildWhatsAppLink } from "../utils/cart";
+const WA_COUNTRY = "34";
+const WA_NUMBER = ["657", "354", "555"].join(""); // aquí pones tus 9 dígitos en 3 trozos
+const WHATSAPP_BASE = `https://wa.me/${WA_COUNTRY}${WA_NUMBER}`;
 
-// Recomendado: usa wa.link si no quieres el número “a simple vista” en el repo
-const WHATSAPP_BASE = "https://wa.link/bkq09g";
 
 
 const temasVelas = ["todos", "abundancia", "amor", "protección", "ofrendas", "muerte"];
