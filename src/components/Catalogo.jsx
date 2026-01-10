@@ -5,7 +5,12 @@ import { preparados } from "./data/preparados";
 import { rituales } from "./data/rituales";
 import { consultas } from "./data/consultas";
 import CarruselImagenes from "./CarruselImagenes";
-import { parseEuroPrice, formatEuro, buildWhatsAppLink } from "../utils/cart";
+import {
+  parsePriceInfo,
+  formatEuro,
+  buildWhatsAppLink,
+  formatPriceForLine
+} from "../utils/cart";
 const WA_COUNTRY = "34";
 const WA_NUMBER = ["657", "354", "555"].join(""); // aquí pones tus 9 dígitos en 3 trozos
 const WHATSAPP_BASE = `https://wa.me/${WA_COUNTRY}${WA_NUMBER}`;
@@ -98,14 +103,37 @@ export default function Catalogo() {
     [cartItems]
   );
 
-  const total = useMemo(
-    () =>
-      cartItems.reduce((acc, [, v]) => {
-        const unit = parseEuroPrice(v.item.precio);
-        return acc + unit * v.qty;
-      }, 0),
-    [cartItems]
-  );
+    const totals = useMemo(() => {
+      let minTotal = 0;
+      let maxTotal = 0;
+      let hasRangeOrVariable = false;
+
+      cartItems.forEach(([, v]) => {
+        const info = parsePriceInfo(v.item.precio);
+        const qty = v.qty;
+
+        if (info.type === "fixed") {
+          minTotal += info.min * qty;
+          maxTotal += info.min * qty;
+        } else if (info.type === "range") {
+          hasRangeOrVariable = true;
+          minTotal += info.min * qty;
+          maxTotal += info.max * qty;
+        } else {
+          // variable/unknown
+          hasRangeOrVariable = true;
+          // No suma nada porque no tenemos cifra; el mínimo se mantiene
+        }
+    });
+
+    return { minTotal, maxTotal, hasRangeOrVariable };
+  }, [cartItems]);
+  const shipping = useMemo(() => {
+    // Por defecto: península (porque no sabemos destino)
+    // Si el mínimo supera 80€, envío gratis.
+    const base = totals.minTotal >= 80 ? 0 : 5;
+    return base;
+  }, [totals.minTotal]);
 
   const buildCartMessage = useCallback(() => {
     const lines = [];
@@ -113,18 +141,40 @@ export default function Catalogo() {
     lines.push("");
 
     cartItems.forEach(([, v], idx) => {
-      const unit = parseEuroPrice(v.item.precio);
-      lines.push(`${idx + 1}. ${v.item.nombre} x${v.qty} — ${formatEuro(unit)} (ud.)`);
+      const priceLabel = formatPriceForLine(v.item.precio);
+      lines.push(`${idx + 1}. ${v.item.nombre} x${v.qty} — ${priceLabel}`);
     });
 
     lines.push("");
-    lines.push(`Total estimado: ${formatEuro(total)}`);
+
+    // Total: fijo vs rango/variable
+    if (!totals.hasRangeOrVariable) {
+      const totalConEnvio = totals.minTotal + shipping;
+      lines.push(`Total productos: ${formatEuro(totals.minTotal)}`);
+      lines.push(`Envío estimado (Península): ${formatEuro(shipping)} (a confirmar destino)`);
+      lines.push(`Total estimado: ${formatEuro(totalConEnvio)}`);
+    } else {
+      // Si hay variables: damos “desde” y, si hay max distinto, también “hasta”
+      lines.push(`Total productos (desde): ${formatEuro(totals.minTotal)}`);
+
+      if (totals.maxTotal > totals.minTotal) {
+        lines.push(`Total productos (hasta): ${formatEuro(totals.maxTotal)} (según opciones)`);
+      } else {
+        lines.push("Total productos: puede variar según opciones/personalización.");
+      }
+
+      lines.push(`Envío estimado (Península): ${formatEuro(shipping)} (a confirmar destino)`);
+
+      const desdeConEnvio = totals.minTotal + shipping;
+      lines.push(`Total estimado (desde): ${formatEuro(desdeConEnvio)}`);
+    }
+
     lines.push("");
     lines.push("Quiero concretar contigo la intención/personalización (hierbas, colores, detalles, etc.).");
+    lines.push("Destino de envío: (indícame ciudad/provincia o si es Islas/Ceuta/Melilla para ajustar).");
 
     return lines.join("\n");
-  }, [cartItems, total]);
-
+  }, [cartItems, totals, shipping]);
 
   const waLink = useMemo(() => {
     const message = buildCartMessage();
@@ -254,14 +304,26 @@ export default function Catalogo() {
               <>
                 <div className="cart-items">
                   {cartItems.map(([key, v]) => {
-                    const unit = parseEuroPrice(v.item.precio);
-                    const line = unit * v.qty;
+                    const info = parsePriceInfo(v.item.precio);
+                    const unitLabel = formatPriceForLine(v.item.precio);
+
+                    let subtotalLabel = "";
+                    if (info.type === "fixed") {
+                      subtotalLabel = formatEuro(info.min * v.qty);
+                    } else if (info.type === "range") {
+                      const min = info.min * v.qty;
+                      const max = info.max * v.qty;
+                      subtotalLabel = `${formatEuro(min)}–${formatEuro(max)}`;
+                    } else {
+                      subtotalLabel = "Variable";
+                    }
+
                     return (
                       <div className="cart-item" key={key}>
                         <div className="cart-item-main">
                           <div className="cart-item-title">{v.item.nombre}</div>
                           <div className="cart-item-sub">
-                            {formatEuro(unit)} (ud.) · Subtotal: {formatEuro(line)}
+                            {unitLabel} · Subtotal: {subtotalLabel}
                           </div>
                         </div>
 
@@ -276,9 +338,11 @@ export default function Catalogo() {
                   })}
                 </div>
 
+
+
                 <div className="cart-footer">
                   <div className="cart-total">
-                    Total estimado: <span>{formatEuro(total)}</span>
+                    Total estimado: <span>{formatEuro(totals)}</span>
                   </div>
 
                   <div className="cart-footer-actions">

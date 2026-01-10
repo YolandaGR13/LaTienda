@@ -180,8 +180,8 @@ export const preparados= [
       require("../img/yemanja.png")
 
     ],
-    descripcion: "Elekes y mazos personalizados",
-    precio: "6-12€",
+    descripcion: "Elekes personalizados",
+    precio: "6",
     tema: ["ofrendas","espiritualidad"],
     Material: "Diverso",
   },
@@ -189,7 +189,7 @@ export const preparados= [
     categoria: "preparados",
     nombre: "Objetos de Orichas y Santos",
     imagen:[require("../img/LlaveE.png"),require("../img/maraca.png"),], 
-    descripcion: "Ninguno es igual que otro, todos son únicos.",
+    descripcion: "Ninguno es igual que otro, todos son únicos Collar de mazo, maracas, llaves... ",
     precio: "Variable",
     tema: ["ofrendas","espiritualidad"],
     Material: "Diverso"
