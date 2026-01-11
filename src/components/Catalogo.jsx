@@ -1,4 +1,4 @@
-import React, { useState, useRef, useMemo,useCallback} from "react";
+import React, { useState, useRef, useMemo, useCallback } from "react";
 import "./Catalogo.css";
 import { velas } from "./data/velas";
 import { preparados } from "./data/preparados";
@@ -9,13 +9,12 @@ import {
   parsePriceInfo,
   formatEuro,
   buildWhatsAppLink,
-  formatPriceForLine
+  formatPriceForLine,
 } from "../utils/cart";
+
 const WA_COUNTRY = "34";
-const WA_NUMBER = ["657", "354", "555"].join(""); // aquí pones tus 9 dígitos en 3 trozos
+const WA_NUMBER = ["657", "354", "555"].join("");
 const WHATSAPP_BASE = `https://wa.me/${WA_COUNTRY}${WA_NUMBER}`;
-
-
 
 const temasVelas = ["todos", "abundancia", "amor", "protección", "ofrendas", "muerte"];
 const temasPreparados = ["todos", "abundancia", "amor", "protección", "ofrendas", "espiritualidad", "kit"];
@@ -27,49 +26,103 @@ export default function Catalogo() {
   const [subOpen, setSubOpen] = useState(false);
   const timeoutRef = useRef(null);
 
-  // === NUEVO: carrito ===
-  // Estructura: { key: { item, qty } }
+  // Carrito: { key: { item, qty, optionLabel, optionPrice, isVariable } }
   const [cart, setCart] = useState({});
   const [cartOpen, setCartOpen] = useState(false);
 
-  // Productos y temas según categoría
+  // Modal selector (para options y para range "-")
+  const [pickOpen, setPickOpen] = useState(false);
+  const [pickItem, setPickItem] = useState(null); // { item, options:[{label,price}], mode:"options"|"range" }
+
+  // Productos y temas
   let productos = { velas, preparados, rituales, consultas }[categoria] || [];
   let temasActivos =
     categoria === "velas" ? temasVelas :
     categoria === "preparados" ? temasPreparados : [];
 
-  // Filtrar si tema distinto de todos
   if (["velas", "preparados"].includes(categoria) && tema !== "todos") {
     productos = productos.filter((p) =>
-      p.tema?.map(t => t.toLowerCase()).includes(tema)
+      p.tema?.map((t) => t.toLowerCase()).includes(tema)
     );
   }
 
   const handleCatClick = (cat) => {
     setCategoria(cat);
     setTema("todos");
-    if (["velas", "preparados"].includes(cat)) setSubOpen(true);
-    else setSubOpen(false);
+    setSubOpen(["velas", "preparados"].includes(cat));
   };
 
   const handleMouseLeave = () => {
     clearTimeout(timeoutRef.current);
     timeoutRef.current = setTimeout(() => setSubOpen(false), 2000);
   };
-  const handleMouseEnter = () => {
-    clearTimeout(timeoutRef.current);
-  };
+  const handleMouseEnter = () => clearTimeout(timeoutRef.current);
 
-  // === NUEVO: helpers carrito ===
-  const itemKey = (item) => item.id || item.nombre; // estable
-  const addToCart = (item) => {
-    const key = itemKey(item);
+  const itemKey = (item) => item.id || item.nombre;
+
+  const addToCartFinal = (item, opt, isVariable = false) => {
+    const keyBase = itemKey(item);
+    const key = opt ? `${keyBase}__${opt.label}` : keyBase;
+
     setCart((prev) => {
       const current = prev[key];
       const qty = current ? current.qty + 1 : 1;
-      return { ...prev, [key]: { item, qty } };
+
+      return {
+        ...prev,
+        [key]: {
+          item,
+          qty,
+          optionLabel: opt?.label ?? null,
+          optionPrice: typeof opt?.price === "number" ? opt.price : null,
+          isVariable,
+        },
+      };
     });
+
     setCartOpen(true);
+  };
+
+  // --- ADD TO CART con selector si range "-" o options "X: Y€"
+  const addToCart = (item) => {
+    const info = parsePriceInfo(item.precio);
+
+    // Opciones tipo "Macerada: 6€ Destilada: 7€"
+    if (info.type === "options") {
+      setPickItem({
+        item,
+        mode: "options",
+        options: info.options.map((o) => ({
+          label: o.label,
+          price: o.price,
+        })),
+      });
+      setPickOpen(true);
+      return;
+    }
+
+    // Rango tipo "6€ - 8€": aquí quieres 2 botones al añadir
+    if (info.type === "range" && info.min !== info.max) {
+      setPickItem({
+        item,
+        mode: "range",
+        options: [
+          { label: "Min", price: info.min },
+          { label: "Max", price: info.max },
+        ],
+      });
+      setPickOpen(true);
+      return;
+    }
+
+    // Variable: entra al carrito como "Precio variable"
+    if (info.type === "variable" || info.type === "unknown") {
+      addToCartFinal(item, null, true);
+      return;
+    }
+
+    // Fixed o range degenerado (min==max) -> entra directo con precio fijo
+    addToCartFinal(item, { label: "Precio", price: info.min }, false);
   };
 
   const incQty = (key) => {
@@ -103,37 +156,66 @@ export default function Catalogo() {
     [cartItems]
   );
 
-    const totals = useMemo(() => {
-      let minTotal = 0;
-      let maxTotal = 0;
-      let hasRangeOrVariable = false;
+  // Totales:
+  // - si hay variable => total muestra "+ a consultar"
+  // - minTotal suma SOLO precios fijos conocidos (optionPrice)
+  // - maxTotal suma si procede (si hay rangos no seleccionados no debería ocurrir porque obligamos a elegir)
+  const totals = useMemo(() => {
+    let minTotal = 0;
+    let maxTotal = 0;
+    let hasVariable = false;
 
-      cartItems.forEach(([, v]) => {
-        const info = parsePriceInfo(v.item.precio);
-        const qty = v.qty;
+    cartItems.forEach(([, v]) => {
+      const qty = v.qty;
 
-        if (info.type === "fixed") {
-          minTotal += info.min * qty;
-          maxTotal += info.min * qty;
-        } else if (info.type === "range") {
-          hasRangeOrVariable = true;
-          minTotal += info.min * qty;
-          maxTotal += info.max * qty;
-        } else {
-          // variable/unknown
-          hasRangeOrVariable = true;
-          // No suma nada porque no tenemos cifra; el mínimo se mantiene
-        }
+      if (v.isVariable) {
+        hasVariable = true;
+        return;
+      }
+
+      if (typeof v.optionPrice === "number") {
+        minTotal += v.optionPrice * qty;
+        maxTotal += v.optionPrice * qty;
+        return;
+      }
+
+      // fallback (no debería pasar)
+      const info = parsePriceInfo(v.item.precio);
+      if (info.type === "fixed") {
+        minTotal += info.min * qty;
+        maxTotal += info.min * qty;
+      } else {
+        hasVariable = true;
+      }
     });
 
-    return { minTotal, maxTotal, hasRangeOrVariable };
+    return { minTotal, maxTotal, hasVariable };
   }, [cartItems]);
-  const shipping = useMemo(() => {
-    // Por defecto: península (porque no sabemos destino)
-    // Si el mínimo supera 80€, envío gratis.
-    const base = totals.minTotal >= 80 ? 0 : 5;
-    return base;
-  }, [totals.minTotal]);
+
+  // Envío:
+  // - 0€ si minTotal >= 80
+  // - si hay variable, el envío puede acabar siendo 0€ o 5€ -> mostramos rango 0–5
+  // - si no hay variable y minTotal < 80 -> 5€
+  const shippingInfo = useMemo(() => {
+    const NEAR_FREE_THRESHOLD = 50;
+
+    // 80+ => gratis SIEMPRE
+    if (totals.minTotal >= 80) {
+      return { type: "fixed", value: 0, label: formatEuro(0) };
+    }
+
+    // Si hay variables y ya estamos en 50+ => "según pedido"
+    if (totals.hasVariable && totals.minTotal >= NEAR_FREE_THRESHOLD) {
+      return {
+        type: "unknown",
+        value: 5, // valor por defecto si necesitas uno interno, pero NO se muestra como número
+        label: "Según pedido",
+      };
+    }
+
+    // En el resto => 5€
+    return { type: "fixed", value: 5, label: formatEuro(5) };
+  }, [totals.minTotal, totals.hasVariable]);
 
   const buildCartMessage = useCallback(() => {
     const lines = [];
@@ -141,32 +223,31 @@ export default function Catalogo() {
     lines.push("");
 
     cartItems.forEach(([, v], idx) => {
-      const priceLabel = formatPriceForLine(v.item.precio);
-      lines.push(`${idx + 1}. ${v.item.nombre} x${v.qty} — ${priceLabel}`);
+      const opt = v.optionLabel ? ` (${v.optionLabel.toUpperCase()})` : "";
+      const unitLabel = v.isVariable
+        ? "Precio variable"
+        : (typeof v.optionPrice === "number" ? formatEuro(v.optionPrice) : formatPriceForLine(v.item.precio));
+
+      lines.push(`${idx + 1}. ${v.item.nombre}${opt} x${v.qty} — ${unitLabel}`);
     });
 
     lines.push("");
 
-    // Total: fijo vs rango/variable
-    if (!totals.hasRangeOrVariable) {
-      const totalConEnvio = totals.minTotal + shipping;
-      lines.push(`Total productos: ${formatEuro(totals.minTotal)}`);
-      lines.push(`Envío estimado (Península): ${formatEuro(shipping)} (a confirmar destino)`);
-      lines.push(`Total estimado: ${formatEuro(totalConEnvio)}`);
+    // Envío en mensaje
+    let envioLabel = "";
+    <span>{shippingInfo.label}</span>
+
+
+    // Total
+    if (!totals.hasVariable) {
+      const totalFinal = totals.minTotal + (shippingInfo.type === "fixed" ? shippingInfo.value : 5);
+      lines.push(`Total productos: ${formatEuro(totals.minTotal)}+ consultar`);
+      lines.push(`Envío: ${envioLabel}`);
+      lines.push(`Total: ${formatEuro(totalFinal)}+ consultar`);
     } else {
-      // Si hay variables: damos “desde” y, si hay max distinto, también “hasta”
-      lines.push(`Total productos (desde): ${formatEuro(totals.minTotal)}`);
-
-      if (totals.maxTotal > totals.minTotal) {
-        lines.push(`Total productos (hasta): ${formatEuro(totals.maxTotal)} (según opciones)`);
-      } else {
-        lines.push("Total productos: puede variar según opciones/personalización.");
-      }
-
-      lines.push(`Envío estimado (Península): ${formatEuro(shipping)} (a confirmar destino)`);
-
-      const desdeConEnvio = totals.minTotal + shipping;
-      lines.push(`Total estimado (desde): ${formatEuro(desdeConEnvio)}`);
+      lines.push(`Total productos: ${formatEuro(totals.minTotal)}`);
+      lines.push(`Envío: ${envioLabel}`);
+      lines.push(`Total estimado: ${formatEuro(totals.minTotal)}+ consultar `);
     }
 
     lines.push("");
@@ -174,7 +255,7 @@ export default function Catalogo() {
     lines.push("Destino de envío: (indícame ciudad/provincia o si es Islas/Ceuta/Melilla para ajustar).");
 
     return lines.join("\n");
-  }, [cartItems, totals, shipping]);
+  }, [cartItems, totals, shippingInfo]);
 
   const waLink = useMemo(() => {
     const message = buildCartMessage();
@@ -183,13 +264,10 @@ export default function Catalogo() {
 
   return (
     <div className="App">
-
-      {/* === NUEVO: botón carrito flotante (si quieres) === */}
       <button className="cart-fab" onClick={() => setCartOpen(true)} aria-label="Abrir carrito">
         Carrito ({cartCount})
       </button>
 
-      {/* Contacto */}
       <div className="contacto-instagram">
         <a href="https://instagram.com/MapacheTarot" target="_blank" rel="noopener noreferrer">
           📸 Sígueme en Instagram
@@ -199,7 +277,6 @@ export default function Catalogo() {
         </a>
       </div>
 
-      {/* Mensaje */}
       <div className="mensaje-artesanal">
         Todos los productos están hechos a mano y ritualizados con intención.
         Para encargar o personalizar, puedes añadir al carrito y terminar por WhatsApp para concretar tu intención.
@@ -211,7 +288,6 @@ export default function Catalogo() {
         Gastos de envio superior a 80€: gratis.
       </div>
 
-      {/* Menú de categorías */}
       <div className="menu-categorias">
         {categorias.map((cat) => (
           <button
@@ -224,13 +300,8 @@ export default function Catalogo() {
         ))}
       </div>
 
-      {/* Submenú de temas */}
       {subOpen && temasActivos.length > 0 && (
-        <div
-          className="menu-temas"
-          onMouseLeave={handleMouseLeave}
-          onMouseEnter={handleMouseEnter}
-        >
+        <div className="menu-temas" onMouseLeave={handleMouseLeave} onMouseEnter={handleMouseEnter}>
           {temasActivos.map((t) => (
             <button
               key={t}
@@ -243,7 +314,6 @@ export default function Catalogo() {
         </div>
       )}
 
-      {/* Catálogo */}
       <div className="catalogo">
         {productos.length > 0 ? (
           productos.map((item) => {
@@ -266,7 +336,6 @@ export default function Catalogo() {
                   <p><strong>Material:</strong> {item.material || item.Material}</p>
                 )}
 
-                {/* === NUEVO: botón añadir === */}
                 <button className="btn-add" onClick={() => addToCart(item)}>
                   Añadir al carrito
                 </button>
@@ -284,7 +353,58 @@ export default function Catalogo() {
         )}
       </div>
 
-      {/* === NUEVO: Drawer/Modal del carrito === */}
+      {/* Selector para options y range "-" */}
+      {pickOpen && pickItem && (
+        <div className="cart-overlay" onClick={() => setPickOpen(false)}>
+          <div className="cart-panel" onClick={(e) => e.stopPropagation()}>
+            <div className="cart-header">
+              <h2>Elige una opción</h2>
+              <button className="cart-close" onClick={() => setPickOpen(false)}>✕</button>
+            </div>
+
+            <div className="cart-note">
+              <strong>{pickItem.item.nombre}</strong><br />
+              {pickItem.mode === "range"
+                ? "Este producto tiene un rango. Elige qué precio quieres añadir al carrito:"
+                : "Selecciona la variante que quieres añadir al carrito:"}
+            </div>
+
+            <div className="cart-items">
+              {pickItem.options.map((opt) => (
+                <button
+                  key={opt.label}
+                  className="btn-primary"
+                  style={{ width: "100%", marginBottom: "0.6rem" }}
+                  onClick={() => {
+                    const label =
+                      pickItem.mode === "range"
+                        ? (opt.label === "Min" ? "Rango mínimo" : "Rango máximo")
+                        : opt.label;
+
+                    addToCartFinal(pickItem.item, { label, price: opt.price }, false);
+                    setPickOpen(false);
+                    setPickItem(null);
+                  }}
+                >
+                  {pickItem.mode === "range"
+                    ? (opt.label === "Min" ? `Mínimo — ${formatEuro(opt.price)}` : `Máximo — ${formatEuro(opt.price)}`)
+                    : `${opt.label.toUpperCase()} — ${formatEuro(opt.price)}`}
+                </button>
+              ))}
+            </div>
+
+            <button
+              className="btn-secondary"
+              onClick={() => setPickOpen(false)}
+              style={{ marginTop: "0.6rem", width: "100%" }}
+            >
+              Cancelar
+            </button>
+          </div>
+        </div>
+      )}
+
+      {/* Carrito */}
       {cartOpen && (
         <div className="cart-overlay" onClick={() => setCartOpen(false)}>
           <div className="cart-panel" onClick={(e) => e.stopPropagation()}>
@@ -294,7 +414,7 @@ export default function Catalogo() {
             </div>
 
             <div className="cart-note">
-              <strong>Importante:</strong> “Terminar” abrirá WhatsApp con tu carrito y el total estimado.
+              <strong>Importante:</strong> “Terminar” abrirá WhatsApp con tu carrito y el total.
               Allí hablaremos para concretar el encargo (intención, personalización, detalles).
             </div>
 
@@ -304,24 +424,20 @@ export default function Catalogo() {
               <>
                 <div className="cart-items">
                   {cartItems.map(([key, v]) => {
-                    const info = parsePriceInfo(v.item.precio);
-                    const unitLabel = formatPriceForLine(v.item.precio);
+                    const opt = v.optionLabel ? ` (${v.optionLabel.toUpperCase()})` : "";
+                    const unitLabel = v.isVariable
+                      ? "Precio variable"
+                      : (typeof v.optionPrice === "number" ? formatEuro(v.optionPrice) : formatPriceForLine(v.item.precio));
 
-                    let subtotalLabel = "";
-                    if (info.type === "fixed") {
-                      subtotalLabel = formatEuro(info.min * v.qty);
-                    } else if (info.type === "range") {
-                      const min = info.min * v.qty;
-                      const max = info.max * v.qty;
-                      subtotalLabel = `${formatEuro(min)}–${formatEuro(max)}`;
-                    } else {
-                      subtotalLabel = "Variable";
+                    let subtotalLabel = "Precio variable";
+                    if (!v.isVariable && typeof v.optionPrice === "number") {
+                      subtotalLabel = formatEuro(v.optionPrice * v.qty);
                     }
 
                     return (
                       <div className="cart-item" key={key}>
                         <div className="cart-item-main">
-                          <div className="cart-item-title">{v.item.nombre}</div>
+                          <div className="cart-item-title">{v.item.nombre}{opt}</div>
                           <div className="cart-item-sub">
                             {unitLabel} · Subtotal: {subtotalLabel}
                           </div>
@@ -338,11 +454,21 @@ export default function Catalogo() {
                   })}
                 </div>
 
-
-
                 <div className="cart-footer">
+                  {/* ENVÍO */}
                   <div className="cart-total">
-                    Total estimado: <span>{formatEuro(totals)}</span>
+                      Envío: <span>{shippingInfo.label}</span>
+                  
+                  </div>
+
+                  {/* TOTAL */}
+                  <div className="cart-total">
+                    Total:
+                    <span>
+                      {totals.hasVariable
+                        ? `${formatEuro(totals.minTotal)}+ a consultar`
+                        : formatEuro(totals.minTotal + (shippingInfo.type === "fixed" ? shippingInfo.value : 5))}
+                    </span>
                   </div>
 
                   <div className="cart-footer-actions">
@@ -350,12 +476,7 @@ export default function Catalogo() {
                       Vaciar
                     </button>
 
-                    <a
-                      className="btn-primary"
-                      href={waLink}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                    >
+                    <a className="btn-primary" href={waLink} target="_blank" rel="noopener noreferrer">
                       Terminar por WhatsApp
                     </a>
                   </div>
@@ -365,7 +486,6 @@ export default function Catalogo() {
           </div>
         </div>
       )}
-
     </div>
   );
 }

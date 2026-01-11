@@ -4,7 +4,7 @@ export const preparados= [
     nombre: "Agua de Florida artesanal de limpieza ",
     imagen: require("../img/botella2.png"),
     descripcion: "Se pueden elegir macerada o destilada.Cant:100ml",
-    precio: "Macerada: 6€ Destilada: 7€",
+    precio: "6€ - 7€",
     tema: ["protección", "ofrendas"],
     Material: "Agua destilada, hierbas y aceites esenciales"
   },
@@ -13,7 +13,7 @@ export const preparados= [
     nombre: "Destilado personalizable",
     imagen: require("../img/botella2.png"),
     descripcion: "¿Quieres un destilado unico? ¿Quizá uno para tu altar? ¿Ofrendar a una entidad? Cant:100ml",
-    precio: "Destilada: 6€",
+    precio: "Destilada: 7€",
     tema: ["protección", "ofrendas"],
     Material: "Agua destilada, hierbas y aceites esenciales"
   },
@@ -180,8 +180,8 @@ export const preparados= [
       require("../img/yemanja.png")
 
     ],
-    descripcion: "Elekes personalizados",
-    precio: "6",
+    descripcion: "Elekes y mazos personalizados",
+    precio: "6€ - 12€",
     tema: ["ofrendas","espiritualidad"],
     Material: "Diverso",
   },
@@ -189,7 +189,7 @@ export const preparados= [
     categoria: "preparados",
     nombre: "Objetos de Orichas y Santos",
     imagen:[require("../img/LlaveE.png"),require("../img/maraca.png"),], 
-    descripcion: "Ninguno es igual que otro, todos son únicos Collar de mazo, maracas, llaves... ",
+    descripcion: "Ninguno es igual que otro, todos son únicos.Maracas,llaves...",
     precio: "Variable",
     tema: ["ofrendas","espiritualidad"],
     Material: "Diverso"
